@@ -18,6 +18,7 @@ import UpdateProfile from "./Container/Pages/Dashboard/UpdateProfile";
 import OrderHistory from "./Container/Pages/Dashboard/OrderHistory";
 import PrivacyPolicy from "./Container/Pages/PrivacyPolicy";
 import TermsAndConditions from "./Container/Pages/TermsAndConditions";
+import SubscriptionTermsAndConditions from "./Container/Pages/Subscription/TermsAndConditions";
 import WishList from "./Container/Pages/Wishlist/WishList";
 import ContactUs from "./Container/Pages/ContactUs";
 import SubCategoryPage from "./Container/Pages/Category/SubCategoryPage";
@@ -42,22 +43,12 @@ function AppRoutes() {
   const [isLogin, setIsLogin] = useState(
     localStorage.getItem("CID") ? true : false
   );
-
   const [loginModal, setLoginModal] = useState(false);
-  const [SubscriptionModal, setSubscriptionModal] = useState(false);
-  const [LoginPopup, setLoginPopup] = useState(0);
-  const [showLogin, setShowLogin] = useState(true);
-  const handleRegister = () => {
-    setShowLogin(false);
-  };
 
-  const handleLogin = () => {
-    setShowLogin(true);
-  };
+  const [LoginPopup, setLoginPopup] = useState(0);
 
   const [cartCount, setCartCount] = useState("");
   const [wishlistCount, setWishlistCount] = useState("");
-
   const getCartCount = async () => {
     var myHeaders = new Headers();
     myHeaders.append("token", localStorage.getItem("token"));
@@ -89,82 +80,8 @@ function AppRoutes() {
 
   useEffect(() => {
     getCartCount();
-    setTimeout(() => {
-      if (
-        isLogin === true ||
-        window.location.href.includes("arrange-free-home+interior+services")
-      ) {
-        setLoginModal(false);
-      } else {
-        setLoginModal(true);
-      }
-    }, 8000);
-    if (loginModal === true) {
-      setLoginPopup(1);
-    }
   }, [isLogin]);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("ShowSubsciptionModal")) {
-      setSubscriptionModal(false);
-    } else {
-      // sessionStorage.setItem("ShowSubsciptionModal", true);
-      setSubscriptionModal(true);
-    }
-  }, []);
-  const membershipCards = [
-    {
-      Title: "Premium",
-      desc: "Everything you need to create your website",
-      offer: "+2 months FREE",
-      benefits: [
-        "Standard Performance",
-        "100 Websites",
-        "100 GB SSD Storage",
-        "GB SSD Storage",
-        "Unlimited Free SSL",
-        "Unlimited Bandwidth",
-        "Free Email",
-        "Free Domain (₹799.00 value)",
-      ],
-      Fee: 149.0,
-    },
-    {
-      Title: "Business",
-      offer: "+2 months FREE",
-
-      desc: "Level-up with more power and enhanced features",
-      benefits: [
-        "Increased (Up to 5x) Performance",
-        "100 Websites",
-        "200 GB NVMe Storage",
-        "Daily Backups (₹1,380.00 value)",
-        "Unlimited Free SSL",
-        "Unlimited Bandwidth",
-        "Free Email",
-        "Free Domain (₹799.00 value)",
-      ],
-      Fee: 269.0,
-    },
-    {
-      Title: "Cloud Startup",
-      desc: "Enjoy optimised performance & guaranteed resources",
-      offer: "+2 months FREE",
-
-      benefits: [
-        "Maximum (Up to 10x) Performance",
-        "300 Websites",
-        "200 GB NVMe Storage",
-        "Daily Backups (₹1,380.00 value)",
-        "Unlimited Free SSL",
-        "Unlimited Bandwidth",
-        "Free Email",
-        "Free Domain (₹799.00 value)",
-      ],
-      Fee: 699.0,
-    },
-  ];
-  const CardLenght = membershipCards.length;
   return (
     <>
       {/* <Alert message="Success Tips"  showIcon closable /> */}
@@ -392,6 +309,14 @@ function AppRoutes() {
                     }
                   />
                   <Route
+                    path="/subscription-terms-and-condition"
+                    element={
+                      <React.Suspense>
+                        <SubscriptionTermsAndConditions />
+                      </React.Suspense>
+                    }
+                  />
+                  <Route
                     path="/shipping-policy"
                     element={
                       <React.Suspense>
@@ -427,86 +352,6 @@ function AppRoutes() {
               </Layout>
             </ConfigProvider>
           </LoginContext.Provider>
-          <Modal
-            open={loginModal}
-            onCancel={() => setLoginModal(false)}
-            footer={null}
-            maskStyle={
-              {
-                // backgroundColor: "rgba(255, 255, 255, 0.8)",
-              }
-            }
-            wrapClassName="reservation_modal"
-            closable={false}
-            width={800}
-          >
-            <div className="parent-container">
-              {showLogin ? (
-                <Login
-                  onRegister={handleRegister}
-                  closeModal={() => setLoginModal(false)}
-                  setIsLogin={setIsLogin}
-                />
-              ) : (
-                <Register
-                  onLogin={handleLogin}
-                  closeModal={() => setLoginModal(false)}
-                  setIsLogin={setIsLogin}
-                />
-              )}
-            </div>
-          </Modal>
-          <Modal
-            open={SubscriptionModal}
-            onCancel={() => setSubscriptionModal(false)}
-            footer={null}
-            wrapClassName="reservation_modal"
-            closable={false}
-            width={membershipCards.length * 350}
-          >
-            <div>
-              <p className="text-center text-3xl font-bold">Choose Your Plan</p>
-              <div
-                className={`mx-5 gap-5 grid mb-10 mt-2 xl:grid-cols-${membershipCards.length} lg:grid-cols-${membershipCards.length} md:grid-cols-2 sm:grid-cols-1 justify-center`}
-              >
-                {membershipCards.map((el, index) => {
-                  return (
-                    <div
-                      className="bg-white h-auto rounded-sm border border-[#027100] hover:scale-[1.05] hover:shadow-2xl transition"
-                      key={index}
-                    >
-                      <p className="text-center text-lg font-semibold mt-2">
-                        {el.Title}
-                      </p>
-                      <p className="text-center text-xs font-bold mt-2 mx-5">
-                        {el.desc}
-                      </p>
-                      <p className="font-semibold mt-6 mx-2 text-center text-xl">
-                        ₹<span className="text-[40px]">{el.Fee}</span>/mo
-                      </p>
-                      <p className="text-center text-lg font-bold my-2 text-[#027100]">
-                        {el.offer}
-                      </p>
-                      <p className="font-semibold mt-2 mx-2">Top Features</p>
-
-                      <div className="mx-5  ">
-                        {el.benefits.map((ea) => {
-                          return (
-                            <li className="list-disc	font-semibold">{ea}</li>
-                          );
-                        })}
-                      </div>
-                      <div className="flex justify-center items-center my-3 mx-5">
-                        <button className="p-2 bg-[#FFE342] w-full text-[#000] font-semibold text-sm md:text-base tracking-widest rounded-full  border-2 border-[#FFE342]">
-                          Buy Offer
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </Modal>
         </CartContext.Provider>
       </UserContext.Provider>
     </>

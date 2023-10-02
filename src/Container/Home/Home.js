@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import CategoryCards from "./CategoryCards/CategoryCards";
 import RecentlyVisited from "./RecentlyVisited/RecentlyVisited";
 import LandingCarousal from "../../Components/Carousal/LandingCarousal";
-import Banner from "./Banner/Banner";
 import TopBargains from "./BestDeal/TopBargains";
-import BestDeal2 from "./BestDeal/BestDeal2";
 import RecentlyVisited2 from "./RecentlyVisited/RecentlyVisited2";
-import { UserContext } from "../../Context/UserContext";
 import Heading from "../../Components/Heading/Heading";
 import Container from "../Container";
 import MainPageFeatures from "./MainPageFeatures";
@@ -14,24 +11,34 @@ import CategoryFooter from "../Layout/Footer/CategoryFooter";
 import Catlog from "./Catlog/Catlog";
 import SectDescription from "../../Components/Heading/SectDescription";
 import { CartContext } from "../../Context/CartContext";
-import { message } from "antd";
-import { LoginContext } from "../../Context/LoginContext";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { ConfigProvider, Modal, message } from "antd";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-
+import Login from "../Pages/Auth/Login";
+import Register from "../Pages/Auth/Register";
+import { FaArrowRight, FaFileContract } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const { isLogin } = useContext(UserContext);
-
+  // const { isLogin } = useContext(UserContext);
+  // const { setLoginModal } = useContext(LoginContext);
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [SkeletonLoad, setSkeletonLoad] = useState(true);
   const skeletonArray = Array.from({ length: 8 }, (_, index) => index);
   const { wishlistCount, setWishlistCount } = useContext(CartContext);
   const [messageApi, contextHolder] = message.useMessage();
-  const { setLoginModal } = useContext(LoginContext);
+  const [Pincode, setPincode] = useState("");
+  const [SubscriptionModal, setSubscriptionModal] = useState(false);
+  const [SubscriptionCards, setSubscriptionCards] = useState([]);
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem("CID") ? true : false
+  );
+  const [bestDealData, setBestDealDData] = useState([]);
+  const [loginModal, setLoginModal] = useState(false);
+  const [OfferBanner, setOfferBanner] = useState();
+  const [showLogin, setShowLogin] = useState(true);
 
   const Testimonials = [
     {
@@ -70,7 +77,6 @@ const Home = () => {
       desc: "I couldn't be more satisfied with the interior design services provided by this company. They have transformed my space into something truly extraordinary, and I'm extremely grateful.",
     },
   ];
-
   const getAllCategory = () => {
     setSkeletonLoad(true);
     var requestOptions = {
@@ -92,16 +98,21 @@ const Home = () => {
       })
       .catch((error) => console.log("error", error));
   };
-
   useEffect(() => {
     getAllCategory();
+    GetAllCardData();
+    setTimeout(() => {
+      if (sessionStorage.getItem("ShowSubsciptionModal")) {
+        setSubscriptionModal(false);
+      } else {
+        // sessionStorage.setItem("ShowSubsciptionModal", true);
+        setSubscriptionModal(true);
+      }
+    }, 5000);
   }, []);
-
   useEffect(() => {
     window.scroll(0, 0);
   }, [isLogin]);
-
-  const [Pincode, setPincode] = useState("");
 
   // const handleGetMyLocation = async () => {
   //   if (navigator.geolocation) {
@@ -130,8 +141,6 @@ const Home = () => {
   // useEffect(() => {
   //   handleGetMyLocation();
   // }, []);
-
-  const [bestDealData, setBestDealDData] = useState([]);
   const skeletonForBestDealArray = Array.from(
     { length: 10 },
     (_, index) => index
@@ -159,7 +168,6 @@ const Home = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const [OfferBanner, setOfferBanner] = useState();
   const getBanners = async () => {
     var requestOptions = {
       method: "GET",
@@ -183,7 +191,17 @@ const Home = () => {
   useEffect(() => {
     getBestDeals();
     getBanners();
-  }, []);
+    setTimeout(() => {
+      if (
+        isLogin === true ||
+        window.location.href.includes("arrange-free-home+interior+services")
+      ) {
+        setLoginModal(false);
+      } else {
+        setLoginModal(true);
+      }
+    }, 8000);
+  }, [isLogin]);
 
   const handleHeartClick = async (id) => {
     if (isLogin === false) {
@@ -250,6 +268,77 @@ const Home = () => {
       .catch((error) => console.log("error", error));
   };
 
+  const handleRegister = () => {
+    setShowLogin(false);
+  };
+  const handleLogin = () => {
+    setShowLogin(true);
+  };
+
+  const GetAllCardData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `${process.env.REACT_APP_HAPS_MEDIA_BASE_URL}SubscriptionCards/get-all-cards`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status === 200) {
+          setSubscriptionCards(result.data);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+  const customTheme = {
+    css: {
+      token: {
+        colorBgBase:
+          "linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+      },
+    },
+  };
+  const SubsData = [
+    {
+      title: "50% credit all the products and services.",
+      desc: "At Arrange Free, we're excited to offer a generous 50% credit on all our products and services. Here's how this fantastic offer works",
+    },
+    {
+      title: "Interior designer for your home Design anything any time.",
+      desc: "At Arrange Free, we believe in making your experience as convenient as possible, which is why we offer complimentary home visit services. Here's how our free home visit services can benefit you",
+    },
+    {
+      title:
+        "Pay 50% and get 50% on EMI base all the products and interior services.",
+    },
+    {
+      title: "Home visit free services.",
+    },
+    {
+      title: "Annual maintenance services on single call.",
+    },
+    {
+      title: "Deep cleaning services.",
+    },
+    {
+      title: "Delivery and assembly free.",
+    },
+    {
+      title: "Curtains Cleaning Services.",
+    },
+    {
+      title: "Customise services.",
+    },
+    {
+      title: "VIP access.",
+    },
+    {
+      title: "Fast delivery.",
+    },
+  ];
   return (
     <Container className="mt-2 md:mt-2 lg:mt-0 error-message">
       {contextHolder}
@@ -474,6 +563,165 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <Modal
+        open={loginModal}
+        onCancel={() => setLoginModal(false)}
+        footer={null}
+        maskStyle={
+          {
+            // backgroundColor: "rgba(255, 255, 255, 0.8)",
+          }
+        }
+        wrapClassName="reservation_modal"
+        closable={false}
+        width={800}
+      >
+        <div className="parent-container">
+          {showLogin ? (
+            <Login
+              onRegister={handleRegister}
+              closeModal={() => setLoginModal(false)}
+              setIsLogin={setIsLogin}
+            />
+          ) : (
+            <Register
+              onLogin={handleLogin}
+              closeModal={() => setLoginModal(false)}
+              setIsLogin={setIsLogin}
+            />
+          )}
+        </div>
+      </Modal>
+      <ConfigProvider theme={customTheme}>
+        <Modal
+          open={SubscriptionModal}
+          onCancel={() => setSubscriptionModal(false)}
+          footer={null}
+          wrapClassName="reservation_modal"
+          closable={false}
+          width={1000}
+        >
+          <div
+            style={{
+              background:
+                "linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+            }}
+            className="pb-5"
+          >
+            <p
+              // style={{
+              //   backgroundImage:
+              //     "linear-gradient(to right,#462523 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
+              //   color: "transparent",
+              //   WebkitBackgroundClip: "text",
+              //   webkitTextStroke: "0.80px #B38728",
+              // }}
+              className="text-[30px] text-white text-center font-serif font-thin "
+            >
+              Arrange Free Membership
+            </p>
+            <p
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right,#462523 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
+                color: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+              className="uppercase text-[60px] text-center  font-bold "
+            >
+              gold
+            </p>
+            <p className="uppercase text-lg text-center font-bold text-white">
+              Gold Benifits
+            </p>
+            <div className="rounded-xl w-auto mx-5  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+              {SubsData &&
+                SubsData.map((el, index) => {
+                  return (
+                    <div
+                      className="cursor-pointer bg-white rounded-lg m-3 text-center py-2 px-2 font-semibold hover:scale-[1.5] hover:shadow-2xl transition"
+                      key={index}
+                    >
+                      <span
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(to right, #462523,#e0c94f ,#462523)",
+                          color: "transparent",
+                          WebkitBackgroundClip: "text",
+                        }}
+                      >
+                        {el.title}
+                      </span>
+                      {/* <p className="text-xs ">{el.desc}</p> */}
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="flex justify-center items-center mt-5">
+              <button className="py-2 bg-white text-lg rounded-md w-[40%] font-semibold hover:scale-[1.05] hover:shadow-2xl transition">
+                <span
+                  style={{
+                    color:
+                      "linear-gradient(to right, #462523,#e0c94f ,#462523)",
+                    WebkitBackgroundClip: "text",
+                  }}
+                >
+                  Add To Cart
+                </span>
+              </button>
+            </div>
+            <p
+              className="text-center text-white mt-2 cursor-pointer"
+              onClick={() => navigate("/subscription-terms-and-condition")}
+            >
+              Terms & Conditions
+            </p>
+            {/* <p className="text-[30px] text-center font-serif font-thin">
+              MemberShip
+            </p> */}
+          </div>
+          {/* <div>
+            <p className="text-center text-3xl font-bold">
+              Choose Your Subscription
+            </p>
+            <div
+              className={`mx-5 gap-5 grid mb-10 mt-2 xl:grid-cols-${SubscriptionCards.length} lg:grid-cols-${SubscriptionCards.length} md:grid-cols-2 sm:grid-cols-1 justify-center`}
+            >
+              {SubscriptionCards &&
+                SubscriptionCards.map((el, index) => {
+                  return (
+                    <div
+                      className="bg-white h-auto rounded-sm border border-[#027100] hover:scale-[1.05] hover:shadow-2xl transition"
+                      key={index}
+                    >
+                      <p className="text-center text-lg font-semibold mt-2">
+                        {el.title}
+                      </p>
+                      <p className="text-center text-xs font-bold mt-2 mx-5">
+                        {el.description}
+                      </p>
+                      <p className="font-semibold mt-2 mx-2">Top Features</p>
+                      <div className="mx-5  ">
+                        {JSON.parse(el.benefits).map((ea) => {
+                          return (
+                            <li className="list-disc	font-semibold">
+                              {ea.title}
+                            </li>
+                          );
+                        })}
+                      </div>
+                      <div className="flex justify-center items-center my-3 mx-5">
+                        <button className="p-2 bg-[#FFE342] w-full text-[#000] font-semibold text-sm md:text-base tracking-widest rounded-full  border-2 border-[#FFE342]">
+                          Buy Offer
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div> */}
+        </Modal>
+      </ConfigProvider>
     </Container>
   );
 };
