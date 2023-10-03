@@ -1022,18 +1022,15 @@ function TermsAndConditions() {
   return (
     <div className="bg-[#242836] pb-10 h-max w-full">
       <div className="py-5">
-        <h1 className="text-white text-center text-3xl font-bold">
+        <h1 className="text-white text-center text-3xl font-bold underline">
           Terms & Conditions
         </h1>
       </div>
-      <div className="gap-5 mx-10 grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+      <div className="gap-5 mx-5 grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
         {Data &&
           Data.map((edr, ina) => {
             return (
-              <div
-                className="bg-white rounded-lg h-auto px-5 pt-5"
-                key={ina}
-              >
+              <div className="bg-white rounded-xl h-auto px-5 pt-5" key={ina}>
                 <p className="text-start text-xl font-semibold">{edr.title}</p>
                 <div className="mt-4">
                   {edr.showMore === 1 ? (
