@@ -652,7 +652,6 @@ const Home = () => {
                       >
                         {el.title}
                       </span>
-                      {/* <p className="text-xs ">{el.desc}</p> */}
                     </div>
                   );
                 })}
@@ -661,17 +660,18 @@ const Home = () => {
               <button className="py-2 bg-white text-lg rounded-md w-[40%] font-semibold hover:scale-[1.05] hover:shadow-2xl transition">
                 <span
                   style={{
-                    color:
+                    backgroundImage:
                       "linear-gradient(to right, #462523,#e0c94f ,#462523)",
+                    color: "transparent",
                     WebkitBackgroundClip: "text",
                   }}
                 >
-                  Add To Cart
+                  Buy Now
                 </span>
               </button>
             </div>
             <p
-              className="text-center text-white mt-2 cursor-pointer"
+              className="text-center text-white mt-2 cursor-pointer text-lg"
               onClick={() => navigate("/subscription-terms-and-condition")}
             >
               Terms & Conditions

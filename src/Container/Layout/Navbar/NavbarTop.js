@@ -219,11 +219,17 @@ const NavbarTop = ({
             >
               arrange free
             </Link> */}
-            <Link to="/" className="relative md:absolute lg:absolute top-1">
+            <Link
+              to="/"
+              className="relative md:absolute lg:absolute top-1 flex items-start gap-2"
+            >
               <img
                 src="/green-logo.png"
                 className="w-[150px] h-[56px] md:w-40 md:h-[60px]"
               />
+              <span className="text-green-700 text-2xl font-semibold">
+                आरेंज&nbsp;फ्री
+              </span>
             </Link>
           </div>
           {/* Search */}
