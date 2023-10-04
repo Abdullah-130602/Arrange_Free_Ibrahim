@@ -38,6 +38,7 @@ import PaymentVerification from "./Container/Pages/CheckOut/PaymentVerification"
 import GetQuote from "./Container/Pages/GetQuote";
 import InteriorServices from "./Container/Pages/InteriorServices";
 import SalesServiceTaskForce from "./Container/Pages/SalesServiceTaskForce/SalesServiceTaskForce";
+import Membership from "./Container/Pages/Membership/Membership";
 
 function AppRoutes() {
   const [isLogin, setIsLogin] = useState(
@@ -121,6 +122,14 @@ function AppRoutes() {
                     element={
                       <React.Suspense>
                         <InteriorServices />
+                      </React.Suspense>
+                    }
+                  />
+                  <Route
+                    path="/arrange-free-gold-membership"
+                    element={
+                      <React.Suspense>
+                        <Membership />
                       </React.Suspense>
                     }
                   />

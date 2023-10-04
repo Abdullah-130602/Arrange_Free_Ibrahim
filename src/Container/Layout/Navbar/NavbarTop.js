@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdArrowDropright } from "react-icons/io";
 import { BsTruck } from "react-icons/bs";
-import { Drawer, Dropdown } from "antd";
+import { ConfigProvider, Drawer, Dropdown, Modal } from "antd";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
 import { TbPackage } from "react-icons/tb";
@@ -13,6 +13,7 @@ import { CgProfile } from "react-icons/cg";
 import { GoPrimitiveDot } from "react-icons/go";
 import { HiOutlineWrenchScrewdriver } from "react-icons/hi2";
 import { FcSalesPerformance } from "react-icons/fc";
+import { FaCrown } from "react-icons/fa";
 
 const NavbarTop = ({
   isLogin,
@@ -206,9 +207,58 @@ const NavbarTop = ({
     };
   }, [selectedIndex, maxIndex]);
 
+  const [SubscriptionModal, setSubscriptionModal] = useState(false);
+
+  const customTheme = {
+    css: {
+      token: {
+        colorBgBase:
+          "linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+      },
+    },
+  };
+  const SubsData = [
+    {
+      title: "50% credit all the products and services.",
+      desc: "At Arrange Free, we're excited to offer a generous 50% credit on all our products and services. Here's how this fantastic offer works",
+    },
+    {
+      title: "Interior designer for your home Design anything any time.",
+      desc: "At Arrange Free, we believe in making your experience as convenient as possible, which is why we offer complimentary home visit services. Here's how our free home visit services can benefit you",
+    },
+    {
+      title:
+        "Pay 50% and get 50% on EMI base all the products and interior services.",
+    },
+    {
+      title: "Home visit free services.",
+    },
+    {
+      title: "Annual maintenance services on single call.",
+    },
+    {
+      title: "Deep cleaning services.",
+    },
+    {
+      title: "Delivery and assembly free.",
+    },
+    {
+      title: "Curtains Cleaning Services.",
+    },
+    {
+      title: "Customise services.",
+    },
+    {
+      title: "VIP access.",
+    },
+    {
+      title: "Fast delivery.",
+    },
+  ];
+
   return (
     <nav className="relative bg-white">
-      <div className="mx-2 md:mx-2 lg:mx-2 xl:mx-10 2xl:mx-14">
+      <div className="mx-2 md:mx-2 lg:mx-2 xl:mx-4 2xl:mx-14">
         <div className="py-1 md:py-3 grid grid-cols-6 items-center gap-4">
           {/* Logo */}
           <div className="col-start-1 col-span-5 md:col-span-2 lg:col-span-2">
@@ -233,7 +283,7 @@ const NavbarTop = ({
             </Link>
           </div>
           {/* Search */}
-          <div className="hidden md:hidden lg:block col-start-3 col-span-3">
+          <div className="hidden md:hidden lg:block col-start-4 col-span-3">
             <form
               className="w-full relative"
               // onSubmit={GoToSearchPage}
@@ -471,19 +521,33 @@ const NavbarTop = ({
           </div>
           {/* Right Links */}
           <div className="hidden md:block lg:block xl:block col col-start-7">
-            <div className="flex justify-end gap-5 ml-2 items-center">
+            <div className="flex justify-end gap-2 ml-2 items-center">
+              <Link
+                to="/arrange-free-gold-membership"
+                className="flex gap-1 p-2 items-center relative text-xs font-semibold text-[#000] tracking-widest rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+                }}
+              >
+                <span>
+                  <FaCrown />
+                </span>
+                Gold Membership
+              </Link>
               <Link
                 to="/Sales-Service-Task-Force"
-                className="flex flex-col items-center relative"
+                className="flex flex-col items-center relative border-b-2 border-[#ffe342]"
               >
                 <FcSalesPerformance size={25} className="text-[#027100]" />
                 <p className="text-xs font-semibold text-[#000] tracking-widest">
-                  After Sale Services Support
+                  {/* After Sale Services Support */}
+                  Services Support
                 </p>
               </Link>
               <Link
                 to="/arrange-free-home+interior+services"
-                className="flex flex-col items-center relative"
+                className="flex flex-col items-center relative border-b-2 border-[#ffe342]"
               >
                 <HiOutlineWrenchScrewdriver
                   size={25}
@@ -495,7 +559,7 @@ const NavbarTop = ({
               </Link>
               <Link
                 to="/track-your-order"
-                className="flex flex-col items-center relative"
+                className="flex flex-col items-center relative border-b-2 border-[#ffe342]"
               >
                 <BsTruck className="text-[#027100]" size={25} />
                 <figcaption className="text-xs font-semibold text-[#000] tracking-widest text-center">
@@ -505,7 +569,7 @@ const NavbarTop = ({
               {isLogin === true ? (
                 <Link
                   to="/cart"
-                  className="flex flex-col items-center relative"
+                  className="flex flex-col items-center relative border-b-2 border-[#ffe342]"
                 >
                   <AiOutlineShoppingCart className="text-gray-600" size={25} />
                   <GoPrimitiveDot
@@ -533,7 +597,7 @@ const NavbarTop = ({
               {isLogin === true ? (
                 <Link
                   to="/wishlist"
-                  className="flex flex-col items-center relative"
+                  className="flex flex-col items-center relative border-b-2 border-[#ffe342]"
                 >
                   <AiOutlineHeart className="text-gray-600" size={25} />
                   <GoPrimitiveDot
@@ -564,7 +628,7 @@ const NavbarTop = ({
                     menu={{
                       items,
                     }}
-                    className="cursor-pointer"
+                    className="cursor-pointer border-b-2 border-[#ffe342]"
                     placement="bottom"
                   >
                     <a onClick={(e) => e.preventDefault()}>
@@ -695,6 +759,84 @@ const NavbarTop = ({
           </button>
         </div>
       </Drawer>
+      {/* <ConfigProvider theme={customTheme}>
+        <Modal
+          open={SubscriptionModal}
+          onCancel={() => setSubscriptionModal(false)}
+          footer={null}
+          wrapClassName="reservation_modal"
+          closable={false}
+          width={1000}
+        >
+          <div
+            style={{
+              background:
+                "linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+            }}
+            className="pb-5"
+          >
+            <p className="text-[30px] text-white text-center font-serif font-thin ">
+              Arrange Free Membership
+            </p>
+            <p
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right,#462523 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
+                color: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+              className="uppercase text-[60px] text-center  font-bold "
+            >
+              gold
+            </p>
+            <p className="uppercase text-lg text-center font-bold text-white">
+              Gold Benifits
+            </p>
+            <div className="rounded-xl w-auto mx-5  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+              {SubsData &&
+                SubsData.map((el, index) => {
+                  return (
+                    <div
+                      className="cursor-pointer bg-white rounded-lg m-3 text-center py-2 px-2 font-semibold hover:scale-110 ease-in-out duration-500 hover:shadow-2xl transition"
+                      key={index}
+                    >
+                      <span
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(to right, #462523,#e0c94f ,#462523)",
+                          color: "transparent",
+                          WebkitBackgroundClip: "text",
+                        }}
+                      >
+                        {el.title}
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="flex justify-center items-center mt-5">
+              <button className="py-2 bg-white text-lg rounded-md w-[40%] font-semibold hover:scale-[1.05] hover:shadow-2xl transition">
+                <span
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, #462523,#e0c94f ,#462523)",
+                    color: "transparent",
+                    WebkitBackgroundClip: "text",
+                  }}
+                >
+                  Buy Now
+                </span>
+              </button>
+            </div>
+            <p
+              className="text-center text-white mt-2 cursor-pointer text-lg"
+              // onClick={() => navigate("/subscription-terms-and-condition")}
+            >
+              Terms & Conditions
+            </p>
+          </div>
+        </Modal>
+      </ConfigProvider> */}
     </nav>
   );
 };

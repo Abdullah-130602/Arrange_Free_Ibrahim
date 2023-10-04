@@ -123,7 +123,7 @@ const SalesServiceTaskForce = () => {
       };
 
       await fetch(
-        "https://hapspro.com/main-backend/customer/contact-us/query",
+        process.env.REACT_APP_HAPS_MEDIA_BASE_URL + "task-force/contactUs",
         requestOptions
       )
         .then((response) => response.json())
