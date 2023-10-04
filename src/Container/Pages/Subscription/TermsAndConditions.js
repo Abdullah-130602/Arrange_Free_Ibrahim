@@ -4,6 +4,80 @@ import React, { useState } from "react";
 function TermsAndConditions() {
   const [Data, setData] = useState([
     {
+      title: "Gold Membership Terms and Conditions",
+      showMore: 0,
+      items: [
+        {
+          title: "Introduction",
+          desc: [
+            '1.1. These terms and conditions ("Terms") govern the Gold Membership program ("Program") offered by Arrange Free ("Company") to eligible members ("Members").',
+          ],
+        },
+        {
+          title: "Membership Eligibility",
+          desc: [
+            "2.1. Membership in the Gold Membership program is available to individuals who meet the eligibility criteria set forth by Arrange Free.",
+          ],
+        },
+        {
+          title: "Gold Membership Benefits",
+          desc: [
+            "3.1. Gold Members are entitled to the following benefits:",
+            "- A discount of [30% to 50%] on all eligible products and services offered by Arrange Free.",
+            "- Exclusive access to special promotions, offers, and events, as determined by Arrange Free.",
+          ],
+        },
+        {
+          title: "Duration of Membership",
+          desc: [
+            "4.1. Gold Membership is valid for a period of [12 months] from the date of enrollment, subject to renewal.",
+          ],
+        },
+        {
+          title: "Enrollment and Membership Fee",
+          desc: [
+            "5.1. To become a Gold Member, individuals must enroll in the Program and pay the designated membership fee, as determined by Arrange Free.",
+          ],
+        },
+        {
+          title: "Usage of Discounts",
+          desc: [
+            "6.1. Gold Members can avail themselves of the discounts on eligible products and services by presenting their Gold Membership card or providing their membership details when making a purchase.",
+          ],
+        },
+        {
+          title: "Discount Limitations",
+          desc: [
+            "7.1. The discount offered under this Program may not be combined with other offers, discounts, or promotions unless expressly stated by Arrange Free.",
+          ],
+        },
+        {
+          title: "Membership Termination",
+          desc: [
+            "8.1. Arrange Free reserves the right to terminate a Gold Membership, without refund, for any breach of these Terms or for any other reason deemed appropriate by Arrange Free.",
+          ],
+        },
+        {
+          title: "Amendments to Terms",
+          desc: [
+            "9.1. Arrange Free reserves the right to modify or amend these Terms at any time, and such changes will be effective upon notification to Members.",
+          ],
+        },
+        {
+          title: "Privacy and Data Usage",
+          desc: [
+            "10.1. Member information and data will be handled in accordance with Arrange Free's privacy policy. Arrange Free will not share Member information with third parties without consent, except as required by law.",
+          ],
+        },
+        {
+          title: "Governing Law and Jurisdiction",
+          desc: [
+            "11.1. These Terms are governed by the laws of [Jurisdiction], and any disputes arising from the Program will be subject to the exclusive jurisdiction of the courts in [Jurisdiction].",
+          ],
+        },
+      ],
+    },
+    {
       title: "Free Fast Delivery.",
       showMore: 0,
       items: [
