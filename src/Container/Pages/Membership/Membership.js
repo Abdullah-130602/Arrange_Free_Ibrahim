@@ -66,6 +66,7 @@ const Membership = () => {
               backgroundImage:
                 "linear-gradient(to right,#f6f2c0 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
               color: "transparent",
+              height: 200,
               WebkitBackgroundClip: "text",
             }}
           >
@@ -166,6 +167,7 @@ const Membership = () => {
               backgroundImage:
                 "linear-gradient(to right,#f6f2c0 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
               color: "transparent",
+              height: 80,
               WebkitBackgroundClip: "text",
             }}
           >
