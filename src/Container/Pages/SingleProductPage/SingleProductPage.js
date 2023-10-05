@@ -605,7 +605,8 @@ const SingleProductPage = () => {
                       <p className="flex">
                         <BsArrowRightCircleFill className="mt-1 text-[#cb9b51]" />
                         <span className="font-semibold text-lg ml-2 text-[#027100]">
-                          Rs {el.product_emi_details[0].advance_amount_to_pay} /-{" "}
+                          Rs {el.product_emi_details[0].advance_amount_to_pay}{" "}
+                          /-{" "}
                           <span className="text-base text-black">
                             Pay Now And Remaining Pay In Zero Cost EMI using{" "}
                             <Link
@@ -762,6 +763,35 @@ const SingleProductPage = () => {
               </div>
             );
           })}
+          <hr className="mx-2 md:mx-16 mt-4" />
+          {/* YT Video */}
+          <div className="my-5 md:my-10">
+            <h1
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right,#cb9b51 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#cb9b51 100%)",
+                color: "transparent",
+                height: 60,
+                WebkitBackgroundClip: "text",
+              }}
+              className="mt-2 text-2xl md:text-5xl font-bold tracking-tight w-full text-center"
+            >
+              Unlock Luxury and Savings with the Arrange Free Gold Membership
+              Plan!
+            </h1>
+            <div className="flex justify-center my-5">
+              <iframe
+                // width="560"
+                // height="315"
+                src="https://www.youtube.com/embed/o-yb9UF9RiE?si=45zYmbUaWxPAyWDK"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full md:w-2/3 lg:w-2/3 xl:w-2/3 h-[300px] md:h-[500px]"
+              ></iframe>
+            </div>
+          </div>
           <DetailTabs productDetails={productDetails} />
           <SimilarProducts slug={CategorySlug} />
           <div className="">
