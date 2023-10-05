@@ -740,7 +740,7 @@ const NavbarTop = ({
             <p>Interior Services</p>
           </button>
         </div>
-        <div className="mt-5 flex flex-col gap-2 mb-10">
+        <div className="mt-5 flex flex-col gap-2">
           <button
             onClick={() => {
               Navigate("/Sales-Service-Task-Force");
@@ -752,6 +752,24 @@ const NavbarTop = ({
             <p>After Sales Task Force</p>
           </button>
         </div>
+        <div className="mt-5 flex flex-col gap-2 mb-10">
+          <button
+            onClick={() => {
+              Navigate("/Sales-Service-Task-Force");
+              setOpen(false);
+            }}
+            className="text-justify font-semibold text-sm md:text-lg flex items-center gap-2"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right,#cb9b51 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#cb9b51 55%,#cb9b51 78%,#f6e27a 100%)",
+              color: "transparent",
+              WebkitBackgroundClip: "text",
+            }}
+          >
+            <FaCrown size={20} color="#cb9b51" />
+            Gold MemberShip
+          </button>
+        </div>
         <div className="fixed bottom-0 w-full">
           <button className="p-2 bg-slate-100 w-[250px] flex justify-center items-center gap-2 text-base font-semibold">
             <FiPower size={20} className="text-red-600" />
@@ -759,7 +777,6 @@ const NavbarTop = ({
           </button>
         </div>
       </Drawer>
-      
     </nav>
   );
 };

@@ -313,7 +313,7 @@ const SingleProductPage = () => {
                 className="flex flex-col md:flex-col lg:flex-row justify-start md:justify-start lg:justify-start xl:justify-center gap-5 md:gap-5 lg:gap-10 xl:gap-10 xl:flex-row error-message mt-1 md:mt-2 lg:mt-10 xl:mt-14"
               >
                 <div className="p-0 md:p-0 lg:p-4 xl:p-4">
-                  <div className="sticky top-12">
+                  <div className="sticky top-24">
                     <Swiper
                       style={{
                         "--swiper-navigation-color": "#fff",
@@ -345,9 +345,9 @@ const SingleProductPage = () => {
                               height="315"
                               src="https://www.youtube.com/embed/onIeIeYRjNU?si=F95pOo0bamnDxuvu"
                               title="YouTube video player"
-                              frameborder="0"
+                              frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              allowfullscreen
+                              allowFullScreen
                             ></iframe>
                           </div> */}
                         </SwiperSlide>
@@ -589,11 +589,76 @@ const SingleProductPage = () => {
                       </button>
                     </div>
                   </div>
-                  {/*  */}
+                  {/* Same day cont */}
                   <div className="hidden md:hidden lg:block xl:block w-[480px] animate-pulse">
                     <h1 className="text-lg text-center font-bold tracking-wide">
                       Same Day Delivery & Assembly
                     </h1>
+                  </div>
+                  <hr />
+                  {/* EMI Options */}
+                  <div className="flex flex-col gap-2 tracking-wide">
+                    <h1 className="text-lg lg:text-2xl font-bold tracking-wider text-[#027100]">
+                      EMI Options
+                    </h1>
+                    <div className="flex flex-col gap-1">
+                      <p className="flex">
+                        <BsArrowRightCircleFill className="mt-1 text-[#cb9b51]" />
+                        <span className="font-semibold text-lg ml-2 text-[#027100]">
+                          Rs {el.product_emi_details[0].advance_amount_to_pay} /-{" "}
+                          <span className="text-base text-black">
+                            Pay Now And Remaining Pay In Zero Cost EMI using{" "}
+                            <Link
+                              to="/arrange-free-gold-membership"
+                              className="font-semibold text-lg underline decoration-[#cb9b51]"
+                              style={{
+                                backgroundImage:
+                                  "linear-gradient(to right,#cb9b51 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#cb9b51 100%)",
+                                color: "transparent",
+                                WebkitBackgroundClip: "text",
+                              }}
+                            >
+                              GOLDEN CARD
+                            </Link>
+                          </span>
+                        </span>
+                      </p>
+                      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
+                        {el.product_emi_details.map((emi, i) => {
+                          return (
+                            <div className="border rounded-xl" key={i}>
+                              <div className="p-2 flex flex-col gap-0.5">
+                                <p className="font-semibold text-sm">
+                                  <span className="font-semibold text-[#027100] text-base">
+                                    {emi.months}
+                                  </span>{" "}
+                                  Months EMI Plan
+                                </p>
+                                <hr />
+                                <p className="font-semibold text-xs">
+                                  Advance Payment:{" "}
+                                  <span className="font-semibold text-[#027100] text-base">
+                                    {emi.advance_payment_percent}%
+                                  </span>
+                                </p>
+                                <p className="font-semibold text-xs">
+                                  Advance Amount to Pay:{" "}
+                                  <span className="font-semibold text-[#027100] text-base">
+                                    {emi.advance_amount_to_pay} /-
+                                  </span>
+                                </p>
+                                <p className="font-semibold text-xs">
+                                  Amount to Pay per Month:{" "}
+                                  <span className="font-semibold text-[#027100] text-base">
+                                    {emi.amount_to_pay_per_month} /-
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                   {/* Product Details */}
                   <div className="mt-2">

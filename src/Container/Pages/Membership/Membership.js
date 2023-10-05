@@ -164,6 +164,7 @@ const Membership = () => {
           <h1
             className="mt-2 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl w-full"
             style={{
+              textAlign: "center",
               backgroundImage:
                 "linear-gradient(to right,#f6f2c0 0,#cb9b51 22%, #f6e27a 45%,#f6f2c0 50%,#f6e27a 55%,#cb9b51 78%,#462523 100%)",
               color: "transparent",
@@ -180,9 +181,9 @@ const Membership = () => {
                 // height="315"
                 src="https://www.youtube.com/embed/o-yb9UF9RiE?si=N4mHywgMlDjxV8bX"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
                 className="w-full h-[260px] md:h-[310px] lg:h-[500px] rounded-none md:rounded-lg"
               ></iframe>
               <p></p>
@@ -193,9 +194,9 @@ const Membership = () => {
                 // height="315"
                 src="https://www.youtube.com/embed/Y3ZiYp_DEBg?si=XiGWi8HRh4aB_dLW"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
                 className="w-full h-[260px] md:h-[310px] lg:h-[500px] rounded-none md:rounded-lg"
               ></iframe>
             </div>

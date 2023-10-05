@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 // import "./index.css";
 
 function TermsAndConditions() {
@@ -1092,6 +1093,10 @@ function TermsAndConditions() {
     value[id].showMore = e;
     setData(value);
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <div className="bg-[#000] pb-10 h-max w-full">

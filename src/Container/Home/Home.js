@@ -323,9 +323,9 @@ const Home = () => {
             // height="315"
             src="https://www.youtube.com/embed/dMcip8j_wLg?si=1vIxnjvHx_AjZXA5"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
             className="w-full md:w-2/3 lg:w-2/3 xl:w-2/3 h-[300px] md:h-[500px]"
           ></iframe>
         </div>
@@ -352,9 +352,9 @@ const Home = () => {
               // height="315"
               src="https://www.youtube.com/embed/Y3ZiYp_DEBg?si=XiGWi8HRh4aB_dLW"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              allowFullScreen
               className="w-full h-[260px] md:h-[310px] lg:h-[500px] rounded-none md:rounded-lg"
             ></iframe>
             <p></p>
@@ -365,9 +365,9 @@ const Home = () => {
               // height="315"
               src="https://www.youtube.com/embed/Lz64Fq_DFTg?si=lZKgS8bIQDixhtsN"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              allowFullScreen
               className="w-full h-[260px] md:h-[310px] lg:h-[500px] rounded-none md:rounded-lg"
             ></iframe>
           </div>

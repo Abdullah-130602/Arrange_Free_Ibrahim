@@ -623,9 +623,9 @@ function IntriorServices() {
             // height="315"
             src="https://www.youtube.com/embed/Y3ZiYp_DEBg?si=XiGWi8HRh4aB_dLW"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
             className="w-full md:w-2/3 lg:w-2/3 xl:w-2/3 h-[300px] md:h-[600px]"
           ></iframe>
         </div>
