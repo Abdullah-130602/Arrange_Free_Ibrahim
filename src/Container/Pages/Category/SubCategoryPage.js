@@ -265,7 +265,7 @@ const SubCategoryPage = () => {
             </p>
           </div>
         </div>
-        <div className="static md:static lg:sticky top-[110px] md:top-20 z-10 bg-white">
+        <div className="static md:static bg-white">
           <ScrollLink
             activeClass="active"
             to="go-to-section"

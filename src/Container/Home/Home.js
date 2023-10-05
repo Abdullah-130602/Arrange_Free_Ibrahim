@@ -293,7 +293,7 @@ const Home = () => {
       })
       .catch((error) => console.log("error", error));
   };
-  
+
   return (
     <Container className="mt-2 md:mt-2 lg:mt-0 error-message">
       {contextHolder}
@@ -346,108 +346,6 @@ const Home = () => {
       <div className="my-5 md:my-10">
         <Heading spanHeading={`What Our Customer Says About Us`} />
         <div className="flex flex-col md:flex-col lg:flex-row items-center gap-5 md:gap-5 lg:gap-5 my-5 md:my-10 lg:mx-2">
-          {/* <div className="xl:mx-10 lg:mx-10 sm:mx-1 w-full md:w-full lg:w-1/2 cursor-grab">
-            <Swiper
-              modules={[Navigation, Pagination, A11y]}
-              spaceBetween={15}
-              breakpoints={{
-                350: {
-                  slidesPerView: 1.5,
-                },
-                640: {
-                  slidesPerView: 1.5,
-                },
-                1000: {
-                  slidesPerView: 2.7,
-                },
-              }}
-              scrollbar={{ draggable: true }}
-              className="flex justify-center items-center"
-            >
-              <div className="flex justify-center items-center flex-col xl:mx-10 lg:mx-10 sm:mx-1">
-                {Testimonials.map((test, a) => {
-                  return (
-                    <SwiperSlide
-                      className="my-10"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                      key={a}
-                    >
-                      <blockquote class="flex h-auto rounded-lg flex-col justify-between bg-white p-3 shadow-sm border sm:p-8 lg:p-5">
-                        <div>
-                          <div class="flex gap-0.5 text-green-500">
-                            {test.number >= 1 && (
-                              <svg
-                                class="h-5 w-5"
-                                fill="#ffe342"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            )}
-                            {test.number >= 2 && (
-                              <svg
-                                class="h-5 w-5"
-                                fill="#ffe342"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            )}
-                            {test.number >= 3 && (
-                              <svg
-                                class="h-5 w-5"
-                                fill="#ffe342"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            )}
-                            {test.number >= 4 && (
-                              <svg
-                                class="h-5 w-5"
-                                fill="#ffe342"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            )}
-                            {test.number >= 5 && (
-                              <svg
-                                class="h-5 w-5"
-                                fill="#ffe342"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            )}
-                          </div>
-
-                          <div class="mt-4">
-                            <p class="text-2xl font-bold text-[#027100] sm:text-3xl">
-                              {test.name}
-                            </p>
-
-                            <p class="mt-4 leading-relaxed text-gray-700">
-                              {test.desc}
-                            </p>
-                          </div>
-                        </div>
-                      </blockquote>
-                    </SwiperSlide>
-                  );
-                })}
-              </div>
-            </Swiper>
-          </div> */}
           <div className="w-full md:w-full lg:w-1/2 flex justify-center">
             <iframe
               // width="560"
@@ -547,7 +445,6 @@ const Home = () => {
           )}
         </div>
       </Modal>
-      
     </Container>
   );
 };

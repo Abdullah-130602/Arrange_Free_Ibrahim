@@ -1094,7 +1094,7 @@ function TermsAndConditions() {
   };
 
   return (
-    <div className="bg-[#242836] pb-10 h-max w-full">
+    <div className="bg-[#000] pb-10 h-max w-full">
       <div className="py-5">
         <h1 className="text-white text-center text-3xl font-bold underline">
           Terms & Conditions
